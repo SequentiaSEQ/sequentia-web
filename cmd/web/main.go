@@ -8,13 +8,15 @@ import (
 )
 
 type ConnectionDetails struct {
-	RpcUser       string
-	RpcPass       string
-	RpcHost       string
-	RpcPort       string
-	P2PPort       string
-	RemoteRpcHost string
-	RemoteP2PHost string
+	RpcUser       		string
+	RpcPass       		string
+	RpcHost       		string
+	RpcPort       		string
+	P2PPort       		string
+	ElectrumPort		string
+	RemoteRpcHost 		string
+	RemoteP2PHost 		string
+	RemoteElectrumHost	string
 }
 
 type Page struct {
@@ -53,7 +55,7 @@ func serveTemplate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := Page{
-		Title:             "Elements Core",
+		Title:             "Sequentia Testnet",
 		ConnectionDetails: details,
 		BlockchainInfo:    blockInfo,
 	}
@@ -67,13 +69,15 @@ func serveTemplate(w http.ResponseWriter, r *http.Request) {
 
 func detailsFromEnv() *ConnectionDetails {
 	return &ConnectionDetails{
-		RpcUser:       os.Getenv("RPC_USER"),
-		RpcPass:       os.Getenv("RPC_PASS"),
-		RpcHost:       os.Getenv("RPC_HOST"),
-		RpcPort:       os.Getenv("RPC_PORT"),
-		P2PPort:       os.Getenv("P2P_PORT"),
-		RemoteRpcHost: os.Getenv("REMOTE_RPC_HOST"),
-		RemoteP2PHost: os.Getenv("REMOTE_P2P_HOST"),
+		RpcUser:       		os.Getenv("RPC_USER"),
+		RpcPass:       		os.Getenv("RPC_PASS"),
+		RpcHost:       		os.Getenv("RPC_HOST"),
+		RpcPort:       		os.Getenv("RPC_PORT"),
+		P2PPort:       		os.Getenv("P2P_PORT"),
+		ElectrumPort:  		os.Getenv("ELECTRUM_PORT"),
+		RemoteRpcHost: 		os.Getenv("REMOTE_RPC_HOST"),
+		RemoteP2PHost: 		os.Getenv("REMOTE_P2P_HOST"),
+		RemoteElectrumHost: os.Getenv("REMOTE_ELECTRUM_HOST"),
 	}
 }
 
